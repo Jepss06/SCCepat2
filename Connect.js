@@ -1,15 +1,21 @@
-var mysql = require("mysql");
+const mysql = require("mysql2");
 
-var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "market",
+const db = mysql.createConnection({
+  host: "bxkrybmiiq44sxgbcoba-mysql.services.clever-cloud.com",
+  port: 20639,
+  user: "urpkfsmlne74qzel",
+  password: "t3Gg9KcCvkhVsmT4ZG5",
+  database: "bxkrybmiiq44sxgbcoba",
 });
 
-db.connect(function (error) {
-  if (error) throw error;
-  console.log("connect");
-});
+db.connect((err) => {
+  if (err) {
+    console.error("Gagal terhubung ke database:", err);
+    return;
+  }
+  console.log("Terhubung ke database MySQL di Clever Cloud");
 
+  // Gunakan koneksi untuk melakukan operasi database (query, insert, update, dll.)
+  // Tutup koneksi setelah selesai melakukan operasi
+});
 module.exports = db;

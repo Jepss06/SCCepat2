@@ -155,6 +155,17 @@ const editBarang = (req, res) => {
     res.redirect("back");
   });
 };
+const cancel = (req, res) => {
+  const sql = `UPDATE barang SET new_stock = ${req.body.stockBaru} WHERE id_barang = ${req.body.barang_id2}`;
+  db.query(sql, (error, result) => {
+    if (error) throw error;
+    const sql2 = `DELETE FROM transaksi WHERE id_transaksi = ${req.body.id_transaksi}`;
+    db.query(sql2, (error, result) => {
+      if (error) throw error;
+      res.redirect("back");
+    });
+  });
+};
 
 module.exports = {
   getMarket,
@@ -166,4 +177,5 @@ module.exports = {
   editJenis,
   shop,
   editBarang,
+  cancel,
 };
